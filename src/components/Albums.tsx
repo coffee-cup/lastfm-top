@@ -23,16 +23,23 @@ const Artist = styled.span`
 `;
 const Playcount = styled.span``;
 
+const EmptyLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+`;
+
 const Album: React.FC<{ album: AlbumModel }> = ({ album }) => (
-  <StyledAlbum>
-    <AlbumImage src={album.image} />
-    <AlbumInfo>
-      <AlbumName>{album.name}</AlbumName>
-      <Artist>{album.artist}</Artist>
-      {" - "}
-      <Playcount>{album.playcount} plays</Playcount>
-    </AlbumInfo>
-  </StyledAlbum>
+  <EmptyLink href={album.url}>
+    <StyledAlbum>
+      <AlbumImage src={album.image} />
+      <AlbumInfo>
+        <AlbumName>{album.name}</AlbumName>
+        <Artist>{album.artist}</Artist>
+        {" - "}
+        <Playcount>{album.playcount} plays</Playcount>
+      </AlbumInfo>
+    </StyledAlbum>
+  </EmptyLink>
 );
 
 const StyledAlbums = styled.div``;

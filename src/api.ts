@@ -17,7 +17,7 @@ export const getUserAlbums = async (
   username: string,
 ): Promise<Array<Album>> => {
   const data = await fetch(
-    `https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${username}&api_key=${API_KEY}&format=json&limit=10`,
+    `https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${username}&api_key=${API_KEY}&format=json&limit=10&period=7day`,
   ).then(res => res.json());
 
   const normalizeAlbum = (data: any): Album => ({

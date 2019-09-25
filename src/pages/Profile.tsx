@@ -21,6 +21,10 @@ const ProfileImage = styled.img`
   border-radius: 150%;
 `;
 
+const ProfileName = styled.h1`
+  margin-bottom: 0;
+`;
+
 const StyledProfile = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,7 +54,8 @@ const Profile: React.FC<{ username: string }> = ({ username }) => {
   return (
     <StyledProfile>
       <ProfileImage src={user.image} />
-      <h1>{user.name}</h1>
+      <ProfileName>{user.name}</ProfileName>
+      <p>Top albums in last 7 days</p>
       {albums && <Albums albums={albums} />}
     </StyledProfile>
   );

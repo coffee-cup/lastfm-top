@@ -22,22 +22,26 @@ const setUsername = (username: string) => {
   state.username = username;
 };
 
-const Home = () => (
-  <StyledHome>
-    <div>
-      <Title>Your Top Albums</Title>
-      <p>
-        Enter your <a href="https://www.last.fm/home">last.fm</a> username to
-        see your top albums of the last month.
-      </p>
-      <Search
-        placeholder="Your last.fm username"
-        onChange={dispatch(setUsername)}
-        value={watch(state.username)}
-        onSubmit={() => dispatch(push)(watch(state.username))}
-      />
-    </div>
-  </StyledHome>
-);
+const Home = () => {
+  const username = watch(state.username);
+
+  return (
+    <StyledHome>
+      <div>
+        <Title>Your Top Albums</Title>
+        <p>
+          Enter your <a href="https://www.last.fm/home">last.fm</a> username to
+          see your top albums of the last month.
+        </p>
+        <Search
+          placeholder="Your last.fm username"
+          onChange={dispatch(setUsername)}
+          value={username}
+          onSubmit={() => dispatch(push)(`/${username}`)}
+        />
+      </div>
+    </StyledHome>
+  );
+};
 
 export default Home;

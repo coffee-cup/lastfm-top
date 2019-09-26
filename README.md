@@ -1,29 +1,3 @@
-# Prodo Template
+# last.fm top albums
 
-This is a template project for the [Prodo web framework](https://prodo.dev).
-
-## Getting Started
-
-### Install Dependencies
-
-```shell
-yarn
-```
-
-### Development
-
-```shell
-yarn start
-```
-
-### Test
-
-```shell
-yarn test
-```
-
-### Build
-
-```shell
-yarn build
-```
+See your top albums on last.fm

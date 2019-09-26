@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Album as AlbumModel } from "../types";
+import { EmptyLink } from "./Link";
 
 const StyledAlbum = styled.div`
   display: flex;
@@ -23,13 +24,8 @@ const Artist = styled.span`
 `;
 const Playcount = styled.span``;
 
-const EmptyLink = styled.a`
-  color: inherit;
-  text-decoration: none;
-`;
-
 const Album: React.FC<{ album: AlbumModel }> = ({ album }) => (
-  <EmptyLink href={album.url}>
+  <EmptyLink href={album.url} target="_blank">
     <StyledAlbum>
       <AlbumImage src={album.image} />
       <AlbumInfo>

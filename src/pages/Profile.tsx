@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import Center from "../components/Center";
 import Tabs from "../components/Tabs";
 import Albums from "../components/Albums";
+import { EmptyLink } from "../components/Link";
 import * as api from "../api";
 
 const getUser = async (username: string) => {
@@ -32,6 +33,7 @@ const ProfileImage = styled.img`
 `;
 
 const ProfileName = styled.h1`
+  margin-top: 0.5rem;
   margin-bottom: 0;
 `;
 
@@ -77,8 +79,10 @@ const Profile: React.FC<{ username: string }> = ({ username }) => {
 
   return (
     <StyledProfile>
-      <ProfileImage src={user.image} />
-      <ProfileName>{user.name}</ProfileName>
+      <EmptyLink href={user.url} target="_blank">
+        <ProfileImage src={user.image} />
+        <ProfileName>{user.name}</ProfileName>
+      </EmptyLink>
       <Desc>Top albums in last</Desc>
       <Tabs
         options={options}

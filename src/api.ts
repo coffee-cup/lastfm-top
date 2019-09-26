@@ -10,6 +10,7 @@ export const getUser = async (username: string): Promise<User> => {
   return {
     name: data.user.name,
     image: data.user.image[2]["#text"],
+    url: data.user.url,
   };
 };
 

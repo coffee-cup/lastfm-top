@@ -1,6 +1,7 @@
 export interface User {
   name: string;
-  image?: string;
+  url: string;
+  image: string;
 }
 
 export interface Album {

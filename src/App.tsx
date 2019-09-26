@@ -5,6 +5,7 @@ import { Switch, Route } from "@prodo/route";
 import { state, watch, dispatch } from "./model";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 const Container = styled.div`
   max-width: 600px;
@@ -19,6 +20,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/:username" component={Profile} />
+        <Route component={NotFound} />
       </Switch>
     </Container>
   );

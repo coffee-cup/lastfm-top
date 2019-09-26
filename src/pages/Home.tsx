@@ -37,7 +37,7 @@ const Home = () => {
           placeholder="Your last.fm username"
           onChange={dispatch(setUsername)}
           value={username}
-          onSubmit={() => dispatch(push)(`/${username}`)}
+          onSubmit={() => dispatch(push)(`${username}`)}
         />
       </div>
     </StyledHome>

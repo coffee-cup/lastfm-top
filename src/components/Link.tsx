@@ -13,3 +13,8 @@ const Link = styled.a`
 `;
 
 export default Link;
+
+export const EmptyLink = styled.a`
+  color: inherit;
+  text-decoration: inherit;
+`;

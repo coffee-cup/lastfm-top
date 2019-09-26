@@ -12,6 +12,10 @@ const Container = styled.div`
   padding: 0 2rem;
   margin-left: auto;
   margin-right: auto;
+
+  @media only screen and (max-width: 600px) {
+    padding: 0 1rem;
+  }
 `;
 
 const App = () => {

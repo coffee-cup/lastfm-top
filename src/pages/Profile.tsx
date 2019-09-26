@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { User } from "../types";
 import { state, watch, local, dispatch, Period } from "../model";
 import Loading from "../components/Loading";
+import ListIcon from "../components/ListIcon";
+import GridIcon from "../components/GridIcon";
 import Center from "../components/Center";
 import Tabs from "../components/Tabs";
 import Albums from "../components/Albums";
@@ -28,6 +30,10 @@ const selectPeriod = (period: Period) => {
   local.selectedPeriod = period;
 };
 
+const setListMode = (listMode: boolean) => {
+  local.listMode = listMode;
+};
+
 const ProfileImage = styled.img`
   border-radius: 150%;
 `;
@@ -42,8 +48,13 @@ const Desc = styled.p`
   margin-bottom: 0.8rem;
 `;
 
+const Controls = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const StyledProfile = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,6 +67,7 @@ const Profile: React.FC<{ username: string }> = ({ username }) => {
   const user = watch(state.users[username]);
   const period = watch(local.selectedPeriod)!;
   const albums = watch(state.albums[period][username]) || [];
+  const listMode = watch(local.listMode)!;
 
   React.useEffect(() => {
     dispatch(getUser)(username);
@@ -84,12 +96,23 @@ const Profile: React.FC<{ username: string }> = ({ username }) => {
         <ProfileName>{user.name}</ProfileName>
       </EmptyLink>
       <Desc>Top albums in last</Desc>
-      <Tabs
-        options={options}
-        selected={period}
-        onChange={value => dispatch(selectPeriod)(value as Period)}
-      />
-      {albums && albums.length > 0 ? <Albums albums={albums} /> : <Loading />}
+      <Controls>
+        <Tabs
+          options={options}
+          selected={period}
+          onChange={value => dispatch(selectPeriod)(value as Period)}
+        />
+        {listMode ? (
+          <GridIcon onClick={() => dispatch(setListMode)(false)} />
+        ) : (
+          <ListIcon onClick={() => dispatch(setListMode)(true)} />
+        )}
+      </Controls>
+      {albums && albums.length > 0 ? (
+        <Albums albums={albums} listMode={listMode} />
+      ) : (
+        <Loading />
+      )}
     </StyledProfile>
   );
 };

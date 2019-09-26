@@ -17,6 +17,7 @@ export interface State {
 }
 
 export interface Local {
+  listMode: boolean;
   selectedPeriod: Period;
 }
 

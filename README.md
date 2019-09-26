@@ -7,17 +7,23 @@ This is a template project for the [Prodo web framework](https://prodo.dev).
 ### Install Dependencies
 
 ```shell
-npm install
+yarn
 ```
 
 ### Development
 
 ```shell
-npm start
+yarn start
 ```
 
 ### Test
 
 ```shell
-npm test
+yarn test
+```
+
+### Build
+
+```shell
+yarn build
 ```

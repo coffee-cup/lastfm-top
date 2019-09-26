@@ -998,6 +998,11 @@
     immer "^3.2.0"
     lodash "^4.17.15"
 
+"@prodo/local@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@prodo/local/-/local-0.0.8.tgz#c84f7b45e00d789313f95de88265847113838c68"
+  integrity sha512-PP2/03SuP6JI/nMz3iiQMsp6u9z5a2PHJ/A5Rld4B1iLSR9Y3ehGGPfhfTIfjPl4o0rBbbfvO7okjekszkaASg==
+
 "@prodo/logger@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@prodo/logger/-/logger-0.0.7.tgz#ad8efd923674bca2ae345da05940f59d8d6eecf2"

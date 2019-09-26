@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { User } from "../types";
-import { state, watch, dispatch, Period } from "../model";
+import { state, watch, local, dispatch, Period } from "../model";
 import Loading from "../components/Loading";
 import Center from "../components/Center";
 import Tabs from "../components/Tabs";
@@ -24,7 +24,7 @@ const getAlbums = async (username: string, period: string) => {
 };
 
 const selectPeriod = (period: Period) => {
-  state.selectedPeriod = period;
+  local.selectedPeriod = period;
 };
 
 const ProfileImage = styled.img`
@@ -41,6 +41,7 @@ const Desc = styled.p`
 `;
 
 const StyledProfile = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +52,7 @@ const StyledProfile = styled.div`
 
 const Profile: React.FC<{ username: string }> = ({ username }) => {
   const user = watch(state.users[username]);
-  const period = watch(state.selectedPeriod);
+  const period = watch(local.selectedPeriod)!;
   const albums = watch(state.albums[period][username]) || [];
 
   React.useEffect(() => {

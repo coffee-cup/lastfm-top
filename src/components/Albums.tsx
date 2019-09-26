@@ -42,7 +42,9 @@ const Album: React.FC<{ album: AlbumModel }> = ({ album }) => (
   </EmptyLink>
 );
 
-const StyledAlbums = styled.div``;
+const StyledAlbums = styled.div`
+  padding-top: 2rem;
+`;
 
 const Albums: React.FC<{ albums: AlbumModel[] }> = props => (
   <StyledAlbums>

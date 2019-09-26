@@ -3,10 +3,17 @@ import loggerPlugin from "@prodo/logger";
 import routePlugin from "@prodo/route";
 import { Album, User } from "./types";
 
+export type Period = "7day" | "1month" | "12month" | "overall";
+
 export interface State {
   username: string;
+  selectedPeriod: Period;
   users: { [name: string]: User };
-  albums: { [name: string]: Album[] };
+  albums: {
+    [period: string]: {
+      [name: string]: Album[];
+    };
+  };
 }
 
 export const model = createModel<State>()

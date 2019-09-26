@@ -1,5 +1,5 @@
 {
-  "name": "music-charts",
+  "name": "lastfm-top",
   "version": "0.1.0",
   "main": "lib/index.js",
   "license": "MIT",

@@ -1,9 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
 import { User } from "../types";
-import { state, watch, dispatch } from "../model";
+import { state, watch, dispatch, Period } from "../model";
 import Loading from "../components/Loading";
 import Center from "../components/Center";
+import Tabs from "../components/Tabs";
 import Albums from "../components/Albums";
 import * as api from "../api";
 
@@ -12,9 +13,18 @@ const getUser = async (username: string) => {
   state.users[username] = user;
 };
 
-const getAlbums = async (username: string) => {
-  const albums = await api.getUserAlbums(username);
-  state.albums[username] = albums;
+const getAlbums = async (username: string, period: string) => {
+  const albums = await api.getUserAlbums(username, period);
+
+  if (!state.albums[period]) {
+    state.albums[period] = {};
+  }
+
+  state.albums[period][username] = albums;
+};
+
+const selectPeriod = (period: Period) => {
+  state.selectedPeriod = period;
 };
 
 const ProfileImage = styled.img`
@@ -23,6 +33,11 @@ const ProfileImage = styled.img`
 
 const ProfileName = styled.h1`
   margin-bottom: 0;
+`;
+
+const Desc = styled.p`
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
 `;
 
 const StyledProfile = styled.div`
@@ -36,12 +51,13 @@ const StyledProfile = styled.div`
 
 const Profile: React.FC<{ username: string }> = ({ username }) => {
   const user = watch(state.users[username]);
-  const albums = watch(state.albums[username]);
+  const period = watch(state.selectedPeriod);
+  const albums = watch(state.albums[period][username]) || [];
 
   React.useEffect(() => {
     dispatch(getUser)(username);
-    dispatch(getAlbums)(username);
-  }, []);
+    dispatch(getAlbums)(username, period);
+  }, [period]);
 
   if (user == null) {
     return (
@@ -51,12 +67,24 @@ const Profile: React.FC<{ username: string }> = ({ username }) => {
     );
   }
 
+  const options: Array<{ value: string; id: Period }> = [
+    { value: "7 days", id: "7day" },
+    { value: "month", id: "1month" },
+    { value: "year", id: "12month" },
+    { value: "all time", id: "overall" },
+  ];
+
   return (
     <StyledProfile>
       <ProfileImage src={user.image} />
       <ProfileName>{user.name}</ProfileName>
-      <p>Top albums in last 7 days</p>
-      {albums && <Albums albums={albums} />}
+      <Desc>Top albums in last</Desc>
+      <Tabs
+        options={options}
+        selected={period}
+        onChange={value => dispatch(selectPeriod)(value as Period)}
+      />
+      {albums && albums.length > 0 ? <Albums albums={albums} /> : <Loading />}
     </StyledProfile>
   );
 };

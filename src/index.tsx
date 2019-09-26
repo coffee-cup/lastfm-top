@@ -12,6 +12,7 @@ const { Provider } = model.createStore({
   logger: true,
   initState: {
     username: "",
+    selectedPeriod: "7day",
     users: {},
     albums: {},
   },

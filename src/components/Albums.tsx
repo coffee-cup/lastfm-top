@@ -65,8 +65,9 @@ const Album: React.FC<{ album: AlbumModel; gridMode: boolean }> = ({
 );
 
 const StyledAlbums = styled.div<{ gridMode: boolean }>`
-  padding-top: 2rem;
+  margin-top: 2rem;
 
+  ${props => props.gridMode && "box-shadow: 0px 0px 11px 4px #33333359"};
   ${props => props.gridMode && "display: grid"};
   ${props => props.gridMode && "grid-template-columns: repeat(3, 1fr);"};
 `;

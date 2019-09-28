@@ -17,7 +17,7 @@ const { Provider } = model.createStore({
   },
   initLocal: {
     selectedPeriod: "7day",
-    listMode: true,
+    listMode: false,
   },
   route: {
     history,
